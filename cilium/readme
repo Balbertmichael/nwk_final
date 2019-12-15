@@ -1,0 +1,14 @@
+To build the deployments from http-sw-app.yaml and pets_app.yaml,
+- Build the images in each of the folders which should have the necessary Dockerfiles
+- Docker tag the images according to the *app.yaml files and Docker push to the localhost:32000/<image_name>
+- Apply the deployments onto Kubernetes
+
+To run commands on the containers like wrk2, xwing, tiefighter, deathstar
+- microk8s.kubectl exec -it <pod_name> -- ...
+
+To run wrk2
+- microk8s.kubectl exec -it wrk2 -- wrk -d 300 -c 2000 -R 10000 --latency -t 4 http://<deployment_ip>
+
+To run ftp client on tiefighter and deathstar
+- microk8s.kubectl exec -it <pod_name> -- lftp <ftp_ip_addr>
+  Refer to the ENV in http-sw-app.yaml for the user and pass to check or modify as necessary

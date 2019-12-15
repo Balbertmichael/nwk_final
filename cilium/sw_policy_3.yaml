@@ -1,0 +1,139 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "L3-L4 policy to restrict deathstar access to empire ships only"
+metadata:
+  name: "rule1"
+spec:
+  endpointSelector:
+    matchLabels:
+      org: store
+      class: petstore
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        org: loadtester
+    toPorts:
+    - ports:
+      - port: "8080"
+        protocol: "TCP"
+      rules:
+        http:
+          - method: "GET"
+            path: "/v2/"
+    - ports:
+      - port: "8081"
+        protocol: "TCP"
+    - ports:
+      - port: "8082"
+        protocol: "TCP"
+    - ports:
+      - port: "8083"
+        protocol: "TCP"
+    - ports:
+      - port: "8084"
+        protocol: "TCP"
+    - ports:
+      - port: "8085"
+        protocol: "TCP"
+    - ports:
+      - port: "8086"
+        protocol: "TCP"
+    - ports:
+      - port: "8087"
+        protocol: "TCP"
+    - ports:
+      - port: "8088"
+        protocol: "TCP"
+    - ports:
+      - port: "8089"
+        protocol: "TCP"
+    - ports:
+      - port: "8090"
+        protocol: "TCP"
+    - ports:
+      - port: "8091"
+        protocol: "TCP"
+    - ports:
+      - port: "8092"
+        protocol: "TCP"
+    - ports:
+      - port: "8093"
+        protocol: "TCP"
+    - ports:
+      - port: "8094"
+        protocol: "TCP"
+    - ports:
+      - port: "8095"
+        protocol: "TCP"
+    - ports:
+      - port: "8096"
+        protocol: "TCP"
+    - ports:
+      - port: "8097"
+        protocol: "TCP"
+    - ports:
+      - port: "8098"
+        protocol: "TCP"
+    - ports:
+      - port: "8099"
+        protocol: "TCP"
+    - ports:
+      - port: "8100"
+        protocol: "TCP"
+    - ports:
+      - port: "8101"
+        protocol: "TCP"
+    - ports:
+      - port: "8102"
+        protocol: "TCP"
+    - ports:
+      - port: "8103"
+        protocol: "TCP"
+    - ports:
+      - port: "8104"
+        protocol: "TCP"
+    - ports:
+      - port: "8105"
+        protocol: "TCP"
+    - ports:
+      - port: "8106"
+        protocol: "TCP"
+    - ports:
+      - port: "8107"
+        protocol: "TCP"
+    - ports:
+      - port: "8108"
+        protocol: "TCP"
+    - ports:
+      - port: "8109"
+        protocol: "TCP"
+    - ports:
+      - port: "8110"
+        protocol: "TCP"
+    - ports:
+      - port: "8111"
+        protocol: "TCP"
+    - ports:
+      - port: "8112"
+        protocol: "TCP"
+    - ports:
+      - port: "8113"
+        protocol: "TCP"
+    - ports:
+      - port: "8114"
+        protocol: "TCP"
+    - ports:
+      - port: "8115"
+        protocol: "TCP"
+    - ports:
+      - port: "8116"
+        protocol: "TCP"
+    - ports:
+      - port: "8117"
+        protocol: "TCP"
+    - ports:
+      - port: "8118"
+        protocol: "TCP"
+    - ports:
+      - port: "8119"
+        protocol: "TCP"
