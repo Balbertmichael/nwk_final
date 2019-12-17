@@ -1,0 +1,11 @@
+[{
+    "labels": [{"key": "name", "value": "rule1"}],
+    "endpointSelector": {"matchLabels":{"org":"store", "class":"petstore"}},
+    "ingress": [{
+        "fromEndpoints": [
+            {"matchLabels":{"org":"loadtester"}}
+        ],
+        "toPorts": [{ "ports" : [{ "port": "8080", "protocol": "TCP"}]
+	}]	
+    }]
+}]

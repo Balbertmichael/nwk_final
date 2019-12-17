@@ -1,0 +1,9 @@
+[{
+    "labels": [{"key": "name", "value": "rule1"}],
+    "endpointSelector": {"matchLabels":{"org":"store", "class":"petstore"}},
+    "ingress": [{
+        "fromEndpoints": [
+            {"matchLabels":{"org":"loadtester"}}
+        ]
+    }]
+}]

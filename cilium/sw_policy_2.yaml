@@ -12,11 +12,11 @@ spec:
   - fromEndpoints:
     - matchLabels:
         org: loadtester
-    toPorts:
-    - ports:
-      - port: "8080"
-        protocol: "TCP"
-      rules:
-        http:
-          - method: "GET"
-            path: "/v2/"
+#    toPorts:
+#    - ports:
+#      - port: "8080"
+#        protocol: "TCP"
+#      rules:
+#        http:
+#          - method: "GET"
+#            path: "/v2/"
