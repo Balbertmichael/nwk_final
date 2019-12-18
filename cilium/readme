@@ -7,8 +7,35 @@ To run commands on the containers like wrk2, xwing, tiefighter, deathstar
 - microk8s.kubectl exec -it <pod_name> -- ...
 
 To run wrk2
-- microk8s.kubectl exec -it wrk2 -- wrk -d 300 -c 2000 -R 10000 --latency -t 4 http://<deployment_ip>
+- microk8s.kubectl exec -it wrk2 -- wrk -d 300 -c 2000 -R 10000 --latency -t 4 http://<deployment_ip>:8080/<path>
 
 To run ftp client on tiefighter and deathstar
 - microk8s.kubectl exec -it <pod_name> -- lftp <ftp_ip_addr>
   Refer to the ENV in http-sw-app.yaml for the user and pass to check or modify as necessary
+
+To find the IP address for server docker container
+- docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container name>
+
+Setup Vagrant instance to run Cilium on Docker libnetwork
+- Install Vagrant on host machine
+- git clone https://github.com/cilium/cilium
+- cd cilium/examples/getting-started
+- vagrant up (To start up vagrant VM)
+- vagrant ssh (To access the VM, has to be run in cilium/examples/getting-started)
+
+In the vagrant vm, to build the containers and container network
+- docker network create --ipv6 --subnet ::1/112 --driver cilium --ipam-driver cilium cilium-net (Creates cilium network to run Docker containers on)
+- git clone https://github.com/balbertmichael/nwk_final
+- cd nwk_final/cilium
+- docker build -t petstore petstore/go-server-server/
+- docker run -d --net cilium-net -l "org=store" -l "class=petstore" petstore
+- docker run -d --net cilium-net -l "org=loadtester" wrk2
+
+To modify Cilium policies in Vagrant VM
+- cilium policy import <policy json file>
+
+To delete all Cilium policies
+- cilium policy delete --all
+
+To run a wrk test in the vagrant vm with just Docker
+- docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/<path>
