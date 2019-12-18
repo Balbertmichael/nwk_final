@@ -38,7 +38,6 @@ To delete all Cilium policies
 - cilium policy delete --all
 
 To run a wrk test in the vagrant vm for docker_results
+- cilium policy delete --all
+- cilium policy import <sw_policy_2 json file or sw_policy_3.json>
 - docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/v2/
-
-To run a wrk test in the vagrant vm for other_docker
-- docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/v2/pet/1
