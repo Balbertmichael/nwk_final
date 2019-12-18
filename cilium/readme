@@ -6,8 +6,8 @@ To build the deployments from http-sw-app.yaml and pets_app.yaml,
 To run commands on the containers like wrk2, xwing, tiefighter, deathstar
 - microk8s.kubectl exec -it <pod_name> -- ...
 
-To run wrk2
-- microk8s.kubectl exec -it wrk2 -- wrk -d 300 -c 2000 -R 10000 --latency -t 4 http://<deployment_ip>:8080/<path>
+To run wrk2 Kubernetes tests
+- microk8s.kubectl exec -it wrk2 -- wrk -d 300 -c 2000 -R 10000 --latency -t 4 http://<deployment_ip>:8080/v2/
 
 To run ftp client on tiefighter and deathstar
 - microk8s.kubectl exec -it <pod_name> -- lftp <ftp_ip_addr>
@@ -37,5 +37,8 @@ To modify Cilium policies in Vagrant VM
 To delete all Cilium policies
 - cilium policy delete --all
 
-To run a wrk test in the vagrant vm with just Docker
-- docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/<path>
+To run a wrk test in the vagrant vm for docker_results
+- docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/v2/
+
+To run a wrk test in the vagrant vm for other_docker
+- docker exec -it <wrk2_container_name> wrk -d 60 -c 100 -R 2500 --latency http://<petstore_ip>:8080/v2/pet/1
